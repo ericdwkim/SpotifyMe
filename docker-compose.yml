@@ -11,11 +11,7 @@ services:
             PGUSER: postgres
         ports:
             - "5432:5432"
-        volumes:
-            - ./data:/data
-            - ./data/misc/init.sql:/docker-entrypoint-initdb.d/1-init.sql
-            - ./data/northwind/init.sql:/docker-entrypoint-initdb.d/2-init.sql
-            - ./data/moma/init.sql:/docker-entrypoint-initdb.d/3-init.sql
+        # volumes:
     pgadmin:
         container_name: SpotifyMe
         image: dpage/pgadmin4:5.2
