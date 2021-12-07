@@ -1,0 +1,83 @@
+                        Portfolio Project - Spotify Clone
+================================================================================
+Entity: Song
+
+Relationships:
+
+[X] - a song is `Written By` (1) or more Artists; bold line from `Song`
+[X] - a song `Belongs to` (0) or (1) album
+[X] - a song `Has` at most (1) release date 
+
+Attributes:
+
+[X]    - MUST have one and only one song_title
+[X]    - MUST have one and only one song_length
+[X]    - MUST have at least one song_producer
+[X]    - MUST have at least one song_writer
+[X]    - MUST have at least one song_release_date
+
+
+========================================
+Entity: User Account
+
+Relationships:
+
+ [X]   - a user account belongs to only one artist
+
+
+Attributes:
+
+[X]    - MUST have one UNIQUE sequential identifier; `ID` in bold*, underlined text
+ *QUESTION: what does bolded text attribute mean again?! ahhhh
+
+[X]    - MUST have at least one UNIQUE username; `username`
+[X]    - MUST have at least one UNIQUE email address; `email_address`
+[X]    - MUST have at least one password; `password`
+
+
+
+========================================
+Entity: Artist
+
+Relationships:
+
+[X]    - an artist MUST have at least 1 or more Songs
+[X]    - an artist belongs to at least 1 user account
+
+
+Attributes:
+
+[X]    - MUST have at least one bio
+[X]    - MUST have at least one name
+[X]    - MUST have WRITTEN at least one song
+
+
+========================================
+Entity: Album
+
+Relationships:
+
+[X]    - an album MUST have at least 1 or more Songs
+[X]    - an album belongs to at least 1 Artist
+
+
+Attributes:
+
+[X]    - MUST have at least one artwork URL; artwork_url
+[X]    - MUST have at least one title; album_title
+[X]    - MUST have at least one total album length; album_length
+[X]    - MUST have at least one album_release_date
+[X]    - MUST have at least one number_of_songs in the album 
+
+========================================
+Entity: Group
+
+Relationships:
+
+[X]    - an artist can belong to zero or 1+ groups
+
+
+Attributes:
+
+[X]    - a group MUST have (1) group_name
+
