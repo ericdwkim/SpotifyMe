@@ -194,7 +194,7 @@ class Artist(db.Model):
     def update(self):
         db.session.commit()
     
-    def delete(self):
+    def remove(self):
         db.session.delete(self)
         db.session.commit()
 
