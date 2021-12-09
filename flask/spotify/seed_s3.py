@@ -51,3 +51,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# TODO: IsADirectoryError: [Errno 21] Is a directory: '/Users/ekim/Code/SpotifyMe/flask/spotify/audio_tracks/download'
