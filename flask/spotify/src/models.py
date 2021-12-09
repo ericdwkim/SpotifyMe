@@ -139,7 +139,14 @@ class Account(db.Model):
         self.username = username
         self.user_email = user_email
 
-        # TODO: serialize() ?
+    def serialize(self):
+        return {
+            'account_id': self.account_id,
+            'username': self.username,
+            'user_email': self.user_email,
+        }
+
+    # def insert(self):
 
 
 class Artist(db.Model):
@@ -153,16 +160,17 @@ class Artist(db.Model):
 
     def __init__(self, artist_name: str):
         self.artist_name = artist_name
-        # self.artist_bio = artist_bio # nullable
 
-        # TODO: serialize() ?
     def serialize(self):
-        # print("this is self.artist_song", self.artist_song)
         return {
             'artist_id': self.artist_id,
             'artist_name': self.artist_name,
             'artist_bio': self.artist_bio
         }
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
 
 
 class Audio(db.Model):
@@ -172,3 +180,7 @@ class Audio(db.Model):
 
     def __init__(self, audio_url: str):
         self.audio_url = audio_url
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()
