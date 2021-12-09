@@ -171,13 +171,14 @@ class Artist(db.Model):
     __tablename__ = 'artists'
     artist_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     artist_name = db.Column(db.String(128), nullable=False)
-    artist_bio = db.Column(db.String(500))
+    artist_bio = db.Column(db.String(500), nullable=False)
 
     song = db.relationship(
         'Song', secondary=songs_artists, backref=db.backref('artist', lazy='select'))
 
-    def __init__(self, artist_name: str):
+    def __init__(self, artist_name: str, artist_bio: str):
         self.artist_name = artist_name
+        self.artist_bio = artist_bio
 
     def serialize(self):
         return {
@@ -188,6 +189,13 @@ class Artist(db.Model):
 
     def insert(self):
         db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
+    
+    def delete(self):
+        db.session.delete(self)
         db.session.commit()
 
 
