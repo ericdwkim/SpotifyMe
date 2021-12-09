@@ -194,9 +194,9 @@ class Artist(db.Model):
     def update(self):
         db.session.commit()
     
-    def remove(self):
-        db.session.delete(self)
-        db.session.commit()
+    # def remove(self):
+    #     db.session.delete(self)
+    #     db.session.commit()
 
 
 class Audio(db.Model):
