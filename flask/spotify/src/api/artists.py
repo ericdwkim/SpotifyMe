@@ -63,22 +63,35 @@ def update(id: int):
         return abort(422)
 
 # DELETE localhost:5000/artists/<int:id>
+# @bp_artists.route('/<int:id>', methods=['DELETE'])
+# def delete(id: int):
+#     # ensure artist w/ id exists
+#     # a_id = Artist.query.get_or_404(id)
+#     try:
+#         a_id = Artist.query.get_or_404(id)
+#         a_id.artist_name = request.json['artist_name']
+#         a_id.artist_bio = request.json['artist_bio']
+#         a_name = a_id.artist_name
+#         a_bio = a_id.artist_bio
+#         a = Artist(
+#             artist_name=a_name, artist_bio=a_bio
+#         )
+#         a_id.remove()
+#         # TODO: figure out why delete() not working
+#         # db.session.delete(a)
+#         # db.session.commit()
+#         return jsonify({"msg": "Artist was successfully deleted"})
+#     except:
+#         return abort(422)   
+
+
 @bp_artists.route('/<int:id>', methods=['DELETE'])
 def delete(id: int):
-    # ensure artist w/ id exists
-    # a_id = Artist.query.get_or_404(id)
+    a_id = Artist.query.get_or_404(id)
     try:
-        a_id = Artist.query.get_or_404(id)
-        a_id.artist_name = request.json['artist_name']
-        a_id.artist_bio = request.json['artist_bio']
-        a_name = a_id.artist_name
-        a_bio = a_id.artist_bio
-        a = Artist(
-            artist_name=a_name, artist_bio=a_bio
-        )
-        # a_id.delete()
-        db.session.delete(a)
-        db.session.commit()
+        db.session.delete(a_id)  # prepare DELETE statement
+        db.session.commit()  # execute DELETE statement
         return jsonify(True)
     except:
-        return abort(422)   
+        # something went wrong :(
+        return jsonify(False)
