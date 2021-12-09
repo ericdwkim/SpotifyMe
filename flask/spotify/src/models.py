@@ -67,8 +67,6 @@ class Song(db.Model):
         self.song_length = song_length
         self.release_date = release_date
 
-    # def serialize(self):
-        # TODO ?
     def serialize(self):
         return {
             'song_id': self.song_id,
@@ -78,6 +76,10 @@ class Song(db.Model):
             'song_length': self.song_length,
             'release_date': self.release_date
         }
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit
 
 
 class Album(db.Model):
@@ -102,7 +104,19 @@ class Album(db.Model):
         self.num_of_songs = num_of_songs
         self.release_date = release_date
 
-    # TODO: serialize() ?
+    def serialize(self):
+        return {
+            'album_id': self.album_id,
+            'album_title': self.album_title,
+            'album_length': self.album_length,
+            'artwork_url': self.artwork_url,
+            'num_of_songs': self.num_of_songs,
+            'release_date': self.release_date
+        }
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit
 
 
 class Group(db.Model):
@@ -116,13 +130,15 @@ class Group(db.Model):
     def __init__(self, group_name: str):
         self.group_name = group_name
 
-        # TODO: serialize() ?
     def serialize(self):
-        print("this is self.group_member", self.group_member)
         return {
             'group_id': self.group_id,
             'group_name': self.group_name,
         }
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit
 
 
 class Account(db.Model):
@@ -146,7 +162,9 @@ class Account(db.Model):
             'user_email': self.user_email,
         }
 
-    # def insert(self):
+    def insert(self):
+        db.session.add(self)
+        db.session.commit
 
 
 class Artist(db.Model):
