@@ -34,8 +34,7 @@ def main():
     def store_urls(list_url):
         for url in list_url:
             audio = Audio(url)
-            db.session.add(audio)
-        db.session.commit()
+            audio.insert()
 
     prefix = "https://s3.us-east-2.amazonaws.com/my.audio.tracks/"
     for k in s3.list_objects(Bucket=s3_bucket)['Contents']:
