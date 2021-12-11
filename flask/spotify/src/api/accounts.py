@@ -3,36 +3,35 @@ from ..models import Account, db
 import hashlib
 import secrets
 
-# def scramble(password: str):
-#     """Hash and salt the given password"""
-#     salt = secrets.token_hex(16)
-#     return hashlib.sha512((password + salt).encode('utf-8')).hexdigest()
+def scramble(password: str):
+    """Hash and salt the given password"""
+    salt = secrets.token_hex(16)
+    return hashlib.sha512((password + salt).encode('utf-8')).hexdigest()
 
 bp_accounts = Blueprint('accounts', __name__, url_prefix='/accounts')
 
-# TODO: test localhost:5000/accounts
-@bp_accounts.route('', methods=['GET'])
-def test():
-    return jsonify({"msg": "hello rld"})
-
-
+# test localhost:5000/accounts
+# @bp_accounts.route('', methods=['GET'])
+# def test():
+#     return jsonify({"msg": "hello rld"})
 
 # READ localhost:5000/accounts
-# @bp_accounts.route('', methods=['GET'])
-# def index():
-#     accounts = Account.query.all()
-#     result = []
-#     for a in accounts:
-#         result.append(a.serialize()) 
-#     return jsonify(result)
+@bp_accounts.route('', methods=['GET'])
+def index():
+    accounts = Account.query.all()
+    result = []
+    for a in accounts:
+        result.append(a.serialize()) 
+    return jsonify(result)
 
-# # SHOW localhost:5000/artists/<int:id>
-# @bp_accounts.route('/<int:id>', methods=['GET'])
-# def show(id: int):
-#     a = Account.query.get_or_404(id)
-#     return jsonify(a.serialize())
+# SHOW localhost:5000/accounts/<int:id>
+@bp_accounts.route('/<int:id>', methods=['GET'])
+def show(id: int):
+    a = Account.query.get_or_404(id)
+    return jsonify(a.serialize())
 
-# # CREATE localhost:5000/accounts/create
+# CREATE localhost:5000/accounts/create
+# TODO: debug request okay; no post to db; account_id = null
 @bp_accounts.route('/create', methods=['POST'])
 def create():
     if 'username' not in request.json or 'user_email' not in request.json:
