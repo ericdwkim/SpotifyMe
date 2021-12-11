@@ -3,10 +3,10 @@ from ..models import Account, db
 import hashlib
 import secrets
 
-def scramble(password: str):
-    """Hash and salt the given password"""
-    salt = secrets.token_hex(16)
-    return hashlib.sha512((password + salt).encode('utf-8')).hexdigest()
+# def scramble(password: str):
+#     """Hash and salt the given password"""
+#     salt = secrets.token_hex(16)
+#     return hashlib.sha512((password + salt).encode('utf-8')).hexdigest()
 
 bp_accounts = Blueprint('accounts', __name__, url_prefix='/accounts')
 
@@ -14,6 +14,7 @@ bp_accounts = Blueprint('accounts', __name__, url_prefix='/accounts')
 @bp_accounts.route('', methods=['GET'])
 def test():
     return jsonify({"msg": "hello rld"})
+
 
 
 # READ localhost:5000/accounts
@@ -28,24 +29,24 @@ def test():
 # # SHOW localhost:5000/artists/<int:id>
 # @bp_accounts.route('/<int:id>', methods=['GET'])
 # def show(id: int):
-#     a = Artist.query.get_or_404(id)
+#     a = Account.query.get_or_404(id)
 #     return jsonify(a.serialize())
 
-# # CREATE localhost:5000/artists/create
-# @bp_accounts.route('/create', methods=['POST'])
-# def create():
-#     if 'artist_name' not in request.json or 'artist_bio' not in request.json:
-#         return abort(400)
-#     try:
-#         a_name = request.json['artist_name']
-#         a_bio = request.json['artist_bio']
-#         a = Artist(
-#             artist_name=a_name, artist_bio=a_bio
-#         )
-#         a.insert()
-#         return jsonify(a.serialize())
-#     except:
-#         return abort(422)
+# # CREATE localhost:5000/accounts/create
+@bp_accounts.route('/create', methods=['POST'])
+def create():
+    if 'username' not in request.json or 'user_email' not in request.json:
+        return abort(400)
+    try:
+        a_username = request.json['username']
+        a_useremail = request.json['user_email']
+        a = Account(
+            username=a_username, user_email=a_useremail
+        )
+        a.insert()
+        return jsonify(a.serialize())
+    except:
+        return abort(422)
 
 # # UPDATE localhost:5000/artists/<int:id>/update
 # @bp_accounts.route('/<int:id>/update', methods=['PATCH'])

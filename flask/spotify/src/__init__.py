@@ -32,10 +32,10 @@ def create_app(test_config=None):
     db.init_app(app)
     migrate = Migrate(app, db)
 
-    # app.register_blueprint(accounts.bp_accounts)
-    # app.register_blueprint(albums.bp_albums)
+    app.register_blueprint(accounts.bp_accounts)
+    app.register_blueprint(albums.bp_albums)
     app.register_blueprint(artists.bp_artists)
-    # app.register_blueprint(groups.bp_groups)
-    # app.register_blueprint(songs.bp_songs)
+    app.register_blueprint(groups.bp_groups)
+    app.register_blueprint(songs.bp_songs)
 
     return app
