@@ -31,7 +31,6 @@ def show(id: int):
     return jsonify(a.serialize())
 
 # CREATE localhost:5000/accounts/create
-# TODO: debug account_id = null
 @bp_accounts.route('/create', methods=['POST'])
 def create():
     if 'username' not in request.json or 'user_email' not in request.json:
@@ -39,8 +38,11 @@ def create():
     try:
         a_username = request.json['username']
         a_useremail = request.json['user_email']
+        a_userpassword = scramble(request.json['user_password'])
+
+        # construct Account
         a = Account(
-            username=a_username, user_email=a_useremail
+            username=a_username, user_email=a_useremail, user_password=a_userpassword
         )
         a.insert()
         return jsonify(a.serialize())
