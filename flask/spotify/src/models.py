@@ -151,9 +151,10 @@ class Account(db.Model):
     artist = db.relationship(
         'Artist', secondary=accounts_artists, backref=db.backref('account', lazy='select'))
 
-    def __init__(self, username: str, user_email: str):
+    def __init__(self, username: str, user_email: str, user_password: str):
         self.username = username
         self.user_email = user_email
+        self.user_password = user_password
 
     def serialize(self):
         return {
