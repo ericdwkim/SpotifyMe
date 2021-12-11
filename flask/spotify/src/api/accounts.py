@@ -33,14 +33,16 @@ def show(id: int):
 # CREATE localhost:5000/accounts/create
 @bp_accounts.route('/create', methods=['POST'])
 def create():
-    if 'username' not in request.json or 'user_email' not in request.json:
+    if 'username' not in request.json or 'user_email' not in request.json or 'user_password' not in request.json:
         return abort(400)
+    # ensure username > 4 chars & password > 8 char
+    # TODO: (feature): password should contain special chars
+    if len(request.json['username']) < 4 or len(request.json['user_password']) < 8:
+        return jsonify({"msg": "username must be longer than 4 characters and/or password must be longer than 8 characters!"})
     try:
         a_username = request.json['username']
         a_useremail = request.json['user_email']
         a_userpassword = scramble(request.json['user_password'])
-
-        # construct Account
         a = Account(
             username=a_username, user_email=a_useremail, user_password=a_userpassword
         )
@@ -49,37 +51,37 @@ def create():
     except:
         return abort(422)
 
-# # UPDATE localhost:5000/artists/<int:id>/update
-# @bp_accounts.route('/<int:id>/update', methods=['PATCH'])
-# def update(id: int):
-#     # ensure payload params exist
-#     if 'artist_name' not in request.json or 'artist_bio' not in request.json:
-#         return abort(400)
-#     # ensure payload params are strings
-#     if type(request.json['artist_name'] or request.json['artist_bio']) is not str:
-#         return abort (400)
-#     try:
-#         a_id = Artist.query.get_or_404(id)
-#         a_id.artist_name = request.json['artist_name']
-#         a_id.artist_bio = request.json['artist_bio']
-#         a_name = a_id.artist_name
-#         a_bio = a_id.artist_bio
-#         a = Artist(
-#             artist_name=a_name, artist_bio=a_bio
-#         )
-#         a.update()
-#         return jsonify(a.serialize())
-#     except:
-#         return abort(422)
+# # UPDATE localhost:5000/accounts/<int:id>/update
+@bp_accounts.route('/<int:id>/update', methods=['PATCH'])
+def update(id: int):
+    if 'username' not in request.json or 'user_email' not in request.json or 'user_password' not in request.json:
+        return abort(400)
+    if type(request.json['username'] or request.json['user_email'] or request.json['user_password']) is not str:
+        return abort (400)
+    try:
+        a_id = Account.query.get_or_404(id)
+        a_id.username = request.json['username']
+        a_id.user_email = request.json['user_email']
+        a_id.user_password = request.json['user_password']
+        a_username = a_id.username
+        a_email = a_id.user_email
+        a_password = a_id.user_password
+        a = Account(
+            username=a_username, user_email=a_email, user_password=a_password
+        )
+        a.update()
+        return jsonify(a.serialize())
+    except:
+        return abort(422)
 
-# # DELETE localhost:5000/artists/<int:id>
-# @bp_accounts.route('/<int:id>', methods=['DELETE'])
-# def delete(id: int):
-#     a_id = Artist.query.get_or_404(id)
-#     try:
-#         db.session.delete(a_id)
-#         db.session.commit()
-#         return jsonify(True)
-#     except:
-#         return jsonify(False)
+# # DELETE localhost:5000/accounts/<int:id>
+@bp_accounts.route('/<int:id>', methods=['DELETE'])
+def delete(id: int):
+    a_id = Account.query.get_or_404(id)
+    try:
+        db.session.delete(a_id)
+        db.session.commit()
+        return jsonify(True)
+    except:
+        return jsonify(False)
 
