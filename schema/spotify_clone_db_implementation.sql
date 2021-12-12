@@ -11,7 +11,7 @@ CREATE TABLE songs (
 CREATE TABLE albums (
     album_id SERIAL,
     album_title TEXT NOT NULL,
-    album_length INT NOT NULL,
+    album_length FLOAT NOT NULL,
     artwork_url TEXT NOT NULL,
     num_of_songs INT NOT NULL,
     release_date DATE NOT NULL,

@@ -60,7 +60,7 @@ class Song(db.Model):
     release_date = db.Column(db.DateTime, nullable=False)
 
     # TODO: may need to change release_date datatype
-    def __init__(self, song_title: str, song_writer: str, song_producer: str, song_length: int, release_date: datetime.datetime):
+    def __init__(self, song_title: str, song_writer: str, song_producer: str, song_length: float, release_date: datetime.datetime):
         self.song_title = song_title
         self.song_writer = song_writer
         self.song_producer = song_producer
@@ -86,7 +86,7 @@ class Album(db.Model):
     __tablename__ = 'albums'
     album_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     album_title = db.Column(db.String(128), nullable=False)
-    album_length = db.Column(db.Integer, nullable=False)
+    album_length = db.Column(db.Float, nullable=False)
     artwork_url = db.Column(db.String(280), nullable=False)
     num_of_songs = db.Column(db.Integer, nullable=False)
     release_date = db.Column(db.DateTime, nullable=False)
@@ -97,7 +97,7 @@ class Album(db.Model):
     artist = db.relationship(
         'Artist', secondary=albums_artists, backref=db.backref('album', lazy='select'))
 
-    def __init__(self, album_title: str, album_length: int, artwork_url: str, num_of_songs: int, release_date: datetime.datetime):
+    def __init__(self, album_title: str, album_length: float, artwork_url: str, num_of_songs: int, release_date: datetime.datetime):
         self.album_title = album_title
         self.album_length = album_length
         self.artwork_url = artwork_url
