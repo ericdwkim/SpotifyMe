@@ -82,6 +82,8 @@ class Song(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def update(self):
+        db.session.commit()
 
 class Album(db.Model):
     __tablename__ = 'albums'
@@ -120,7 +122,7 @@ class Album(db.Model):
         db.session.add(self)
         db.session.commit()
     
-    def update(sel):
+    def update(self):
         db.session.commit()
 
 
@@ -146,6 +148,9 @@ class Group(db.Model):
 
     def insert(self):
         db.session.add(self)
+        db.session.commit()
+    
+    def update(self):
         db.session.commit()
 
 
