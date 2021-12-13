@@ -99,7 +99,6 @@ class Album(db.Model):
         'Artist', secondary=albums_artists, backref=db.backref('album', lazy='select'))
 
     # @dev: changed album_length datatype from int --> float
-    # TODO: MM-DD-YYYY for release_date ?
     def __init__(self, album_title: str, album_length: float, artwork_url: str, num_of_songs: int, release_date: datetime.datetime):
         self.album_title = album_title
         self.album_length = album_length

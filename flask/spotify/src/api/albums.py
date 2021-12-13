@@ -51,17 +51,7 @@ def create():
 def update(id: int):
     if ('album_title' or 'album_length' or 'artwork_url' or 'num_of_songs' or ' release_date') not in request.json:
         return abort(400)
-    # ensure payload str params are strings
     if type(request.json['album_title'] or request.json['artwork_url']) is not str:
-        return abort (400)
-    # ensure payload float param is float
-    if type(request.json['album_length']) is not float:
-        return abort (400)
-    # ensure payload int param is int
-    if type(request.json['num_of_songs']) is not int:
-        return abort (400)
-    # ensure payload datetime is datetime
-    if type(request.json['release_date']) is not datetime:
         return abort (400)
     try:
         a_id = Album.query.get_or_404(id)
