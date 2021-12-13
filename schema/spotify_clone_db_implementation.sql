@@ -21,6 +21,7 @@ CREATE TABLE albums (
 CREATE TABLE groups (
     group_id SERIAL,
     group_name TEXT NOT NULL,
+    group_num_members INT NOT NULL
     PRIMARY KEY (group_id)
 );
 

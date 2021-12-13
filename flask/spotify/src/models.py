@@ -128,17 +128,20 @@ class Group(db.Model):
     __tablename__ = 'groups'
     group_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     group_name = db.Column(db.String(128), nullable=False)
+    group_num_members= db.Column(db.Integer, nullable=False)
 
     member = db.relationship(
         'Artist', secondary=groups_artists, backref=db.backref('members', lazy='select'))
 
-    def __init__(self, group_name: str):
+    def __init__(self, group_name: str, group_num_members: int):
         self.group_name = group_name
+        self.group_num_members = group_num_members
 
     def serialize(self):
         return {
             'group_id': self.group_id,
             'group_name': self.group_name,
+            'group_num_members': self.group_num_members
         }
 
     def insert(self):
