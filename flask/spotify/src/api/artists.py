@@ -20,8 +20,8 @@ def index():
 # SHOW localhost:5000/artists/<int:id>
 @bp_artists.route('/<int:id>', methods=['GET'])
 def show(id: int):
-    a = Artist.query.get_or_404(id)
-    return jsonify(a.serialize())
+    a_id = Artist.query.get_or_404(id)
+    return jsonify(a_id.serialize())
 
 # CREATE localhost:5000/artists/create
 @bp_artists.route('/create', methods=['POST'])
