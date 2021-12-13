@@ -60,6 +60,7 @@ class Song(db.Model):
     release_date = db.Column(db.DateTime, nullable=False)
 
     # TODO: may need to change release_date datatype
+    # @dev: changed song_length datatype from int --> float
     def __init__(self, song_title: str, song_writer: str, song_producer: str, song_length: float, release_date: datetime.datetime):
         self.song_title = song_title
         self.song_writer = song_writer
@@ -97,6 +98,8 @@ class Album(db.Model):
     artist = db.relationship(
         'Artist', secondary=albums_artists, backref=db.backref('album', lazy='select'))
 
+    # @dev: changed album_length datatype from int --> float
+    # TODO: MM-DD-YYYY for release_date ?
     def __init__(self, album_title: str, album_length: float, artwork_url: str, num_of_songs: int, release_date: datetime.datetime):
         self.album_title = album_title
         self.album_length = album_length
@@ -116,6 +119,9 @@ class Album(db.Model):
 
     def insert(self):
         db.session.add(self)
+        db.session.commit()
+    
+    def update(sel):
         db.session.commit()
 
 

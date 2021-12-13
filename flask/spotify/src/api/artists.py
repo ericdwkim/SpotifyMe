@@ -26,7 +26,7 @@ def show(id: int):
 # CREATE localhost:5000/artists/create
 @bp_artists.route('/create', methods=['POST'])
 def create():
-    if 'artist_name' not in request.json or 'artist_bio' not in request.json:
+    if ('artist_name' or 'artist_bio') not in request.json:
         return abort(400)
     try:
         a_name = request.json['artist_name']
@@ -42,10 +42,8 @@ def create():
 # UPDATE localhost:5000/artists/<int:id>/update
 @bp_artists.route('/<int:id>/update', methods=['PATCH'])
 def update(id: int):
-    # ensure payload params exist
-    if 'artist_name' not in request.json or 'artist_bio' not in request.json:
+    if ('artist_name' or 'artist_bio') not in request.json:
         return abort(400)
-    # ensure payload params are strings
     if type(request.json['artist_name'] or request.json['artist_bio']) is not str:
         return abort (400)
     try:

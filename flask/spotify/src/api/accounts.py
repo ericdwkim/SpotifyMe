@@ -33,7 +33,7 @@ def show(id: int):
 # CREATE localhost:5000/accounts/create
 @bp_accounts.route('/create', methods=['POST'])
 def create():
-    if 'username' not in request.json or 'user_email' not in request.json or 'user_password' not in request.json:
+    if ('username' or 'user_email' or 'user_password') not in request.json:
         return abort(400)
     # ensure username > 4 chars & password > 8 char
     # TODO: (feature): password should contain special chars
@@ -54,7 +54,7 @@ def create():
 # # UPDATE localhost:5000/accounts/<int:id>/update
 @bp_accounts.route('/<int:id>/update', methods=['PATCH'])
 def update(id: int):
-    if 'username' not in request.json or 'user_email' not in request.json or 'user_password' not in request.json:
+    if ('username' or 'user_email' or 'user_password') not in request.json:
         return abort(400)
     if type(request.json['username'] or request.json['user_email'] or request.json['user_password']) is not str:
         return abort (400)
