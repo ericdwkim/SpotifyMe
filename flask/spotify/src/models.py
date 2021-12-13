@@ -56,10 +56,9 @@ class Song(db.Model):
     song_title = db.Column(db.String(128), nullable=False)
     song_writer = db.Column(db.String(128), nullable=False)
     song_producer = db.Column(db.String(128), nullable=False)
-    song_length = db.Column(db.Integer, nullable=False)
+    song_length = db.Column(db.Float, nullable=False)
     release_date = db.Column(db.DateTime, nullable=False)
 
-    # TODO: may need to change release_date datatype
     # @dev: changed song_length datatype from int --> float
     def __init__(self, song_title: str, song_writer: str, song_producer: str, song_length: float, release_date: datetime.datetime):
         self.song_title = song_title
