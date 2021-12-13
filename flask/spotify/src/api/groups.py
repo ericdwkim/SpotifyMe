@@ -13,59 +13,61 @@ bp_groups = Blueprint('groups', __name__, url_prefix='/groups')
 def index():
     groups = Group.query.all()
     result = []
-    for a in groups:
-        result.append(a.serialize())
+    for g in groups:
+        result.append(g.serialize())
     return jsonify(result)
 
-# SHOW localhost:5000/groups/<int:id>
+# # SHOW localhost:5000/groups/<int:id>
 @bp_groups.route('/<int:id>', methods=['GET'])
 def show(id: int):
-    a = Group.query.get_or_404(id)
-    return jsonify(a.serialize())
+    g = Group.query.get_or_404(id)
+    return jsonify(g.serialize())
 
-# CREATE localhost:5000/groups/create
+# # CREATE localhost:5000/groups/create
 @bp_groups.route('/create', methods=['POST'])
 def create():
-    if ('artist_name' or 'artist_bio') not in request.json:
+    if ('group_name' or 'group_num_members') not in request.json:
         return abort(400)
     try:
-        a_name = request.json['artist_name']
-        a_bio = request.json['artist_bio']
-        a = Group(
-            artist_name=a_name, artist_bio=a_bio
+        g_name = request.json['group_name']
+        g_num_members = request.json['group_num_members']
+        g = Group(
+            group_name=g_name, group_num_members=g_num_members
         )
-        a.insert()
-        return jsonify(a.serialize())
+        g.insert()
+        return jsonify(g.serialize())
     except:
         return abort(422)
 
-# UPDATE localhost:5000/groups/<int:id>/update
+# # UPDATE localhost:5000/groups/<int:id>/update
 @bp_groups.route('/<int:id>/update', methods=['PATCH'])
 def update(id: int):
-    if ('artist_name' or 'artist_bio') not in request.json:
+    if ('group_name' or 'group_num_members') not in request.json:
         return abort(400)
-    if type(request.json['artist_name'] or request.json['artist_bio']) is not str:
-        return abort (400)
+    # if type(request.json['group_name']) is not str:
+    #     return abort (400)
+    # if type(request.json['group_num_members']) is not int:
+    #     return abort (400)
     try:
-        a_id = Group.query.get_or_404(id)
-        a_id.artist_name = request.json['artist_name']
-        a_id.artist_bio = request.json['artist_bio']
-        a_name = a_id.artist_name
-        a_bio = a_id.artist_bio
-        a = Group(
-            artist_name=a_name, artist_bio=a_bio
+        g_id = Group.query.get_or_404(id)
+        g_id.group_name = request.json['group_name']
+        g_id.group_num_members = request.json['group_num_members']
+        g_name = g_id.group_name
+        g_num_members = g_id.group_num_members
+        g = Group(
+            group_name=g_name, group_num_members=g_num_members
         )
-        a.update()
-        return jsonify(a.serialize())
+        g.update()
+        return jsonify(g.serialize())
     except:
         return abort(422)
 
-# DELETE localhost:5000/groups/<int:id>
+# # DELETE localhost:5000/groups/<int:id>
 @bp_groups.route('/<int:id>', methods=['DELETE'])
 def delete(id: int):
-    a_id = Group.query.get_or_404(id)
+    g_id = Group.query.get_or_404(id)
     try:
-        db.session.delete(a_id)
+        db.session.delete(g_id)
         db.session.commit()
         return jsonify(True)
     except:
