@@ -1,4 +1,3 @@
-# from ...flask.spotify.src import songs, albums, groups, accounts, artists
 from ...flask.spotify.src.models import Song, Album, Group, Account, Artist
 
 def test_new_song():
