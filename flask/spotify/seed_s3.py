@@ -24,7 +24,7 @@ def main():
     )
 
     # Upload Files to S3
-    data_file_path = os.path.join(os.getcwd(), 'audio_tracks')
+    data_file_path = os.path.join(os.getcwd(), 'audio_tracks/upload')
     for file in os.listdir(data_file_path):
         if not file.startswith('~'):
             try:
