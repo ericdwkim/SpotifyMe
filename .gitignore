@@ -7,3 +7,6 @@ venv
 
 # Testing
 .pytest_cache
+
+# ec2 private key
+*.pem
