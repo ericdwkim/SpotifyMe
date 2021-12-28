@@ -4,7 +4,7 @@ import os
 import boto3
 from dotenv import load_dotenv
 import urllib
-from src.models import Account, Album, Artist, Group, Song, Audio, songs_artists, songs_albums, albums_artists, groups_artists, accounts_artists, db
+from src.models import Audio
 from src import create_app
 
 # Load environmental variables
