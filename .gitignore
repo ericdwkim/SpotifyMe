@@ -1,6 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
-.env
+.env*
 flask/spotify/audio_tracks/*
 notes/*
 venv
