@@ -1,26 +1,26 @@
-version: "3.8"
-services:
-    web:
-        build:
-        image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_web
-        command: gunicorn --bind 0.0.0.0:5000 spotify.src.__init__:app
-        volumes:
-            # - static_volume: /path/to/static
-            # - media_volume: /path/to/media
-        expose:
-            - 5000
-        environment:
-            - ./.env.prod
+# version: "3.8"
+# services:
+#     web:
+#         build:
+#         image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_web
+#         command: gunicorn --bind 0.0.0.0:5000 spotify.src.__init__:app
+#         volumes:
+#             # - static_volume: /path/to/static
+#             # - media_volume: /path/to/media
+#         expose:
+#             - 5000
+#         environment:
+#             - ./.env.prod
     #  nginx:
     #     build: ./services/nginx
     #     image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_nginx
     #     volumes:
             # - static_volume: /path/to/static
             # - media_volume: /path/to/media
-        ports:
-            - 1337:80
-        depends_on:
-            - web
+        # ports:
+        #     - 1337:80
+        # depends_on:
+        #     - web
     # app:
     #     depends_on:
     #       - db
@@ -32,40 +32,40 @@ services:
     #         FLASK_ENV: development
     #     volumes:
     #         - hostPath:containerPath:ro
-    db:
-        container_name: pg_spotifyMe
-        image: postgres:13.2-alpine
-        restart: always
-        environment:
-            POSTGRES_USER: ${DB_USER}
-            POSTGRES_DB: ${DB_NAME}
-            POSTGRES_HOST_AUTH_METHOD: trust
+    # db:
+    #     container_name: pg_spotifyMe
+    #     image: postgres:13.2-alpine
+    #     restart: always
+    #     environment:
+    #         POSTGRES_USER: ${DB_USER}
+    #         POSTGRES_DB: ${DB_NAME}
+    #         POSTGRES_HOST_AUTH_METHOD: trust
             # PGUSER: postgres
             # - ./.env.prod.db
-        ports:
-            - "5432:5432"
+        # ports:
+        #     - "5432:5432"
         # volumes:
         #     -postgresdata:/var/lib/postgresql/data:ro
-    pgadmin:
-        container_name: pgadmin_spotifyMe
-        image: dpage/pgadmin4:5.2
-        restart: always
-        environment:
-            PGADMIN_DEFAULT_EMAIL: ericdwkim.io@gmail.com
-            PGADMIN_DEFAULT_PASSWORD: ${pgadmin_password}
-            PGADMIN_LISTEN_PORT: 5433
-            PGADMIN_CONFIG_SERVER_MODE: "False"
-            PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
-            PGADMIN_CONFIG_UPGRADE_CHECK_ENABLED: "False"
-        ports:
-            - "5433:5433"
-        depends_on:
-            - db
+    # pgadmin:
+    #     container_name: pgadmin_spotifyMe
+    #     image: dpage/pgadmin4:5.2
+    #     restart: always
+    #     environment:
+    #         PGADMIN_DEFAULT_EMAIL: ericdwkim.io@gmail.com
+    #         PGADMIN_DEFAULT_PASSWORD: ${pgadmin_password}
+    #         PGADMIN_LISTEN_PORT: 5433
+    #         PGADMIN_CONFIG_SERVER_MODE: "False"
+    #         PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    #         PGADMIN_CONFIG_UPGRADE_CHECK_ENABLED: "False"
+    #     ports:
+    #         - "5433:5433"
+    #     depends_on:
+    #         - db
 # networks:
 #     default:
 #         name: nunet
 
-volumes:
-    postgresdata:
+# volumes:
+#     postgresdata:
     # static_data:
     # media_data:

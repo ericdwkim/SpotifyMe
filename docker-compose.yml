@@ -1,16 +1,16 @@
 version: "3.8"
 services:
-    # app:
-    #     depends_on:
-    #       - db
-    #     build: ./spotify
-    #     restart: always
-    #     ports:
-    #         - "5000:5000"
-    #     environment:
-    #         FLASK_ENV: development
-    #     volumes:
-    #         - hostPath:containerPath:ro
+    app:
+        depends_on:
+          - db
+        # build: .
+        restart: always
+        ports:
+            - "5000:5000"
+        environment:
+            FLASK_ENV: development
+        # volumes:
+        #     - hostPath:containerPath:ro
     db:
         container_name: pg_spotifyMe
         image: postgres:13.2-alpine
