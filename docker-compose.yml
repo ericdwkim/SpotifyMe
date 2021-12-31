@@ -1,19 +1,8 @@
 version: "3.8"
 services:
-    app:
-        depends_on:
-          - db
-        # build: .
-        restart: always
-        ports:
-            - "5000:5000"
-        environment:
-            FLASK_ENV: development
-        # volumes:
-        #     - hostPath:containerPath:ro
     db:
         container_name: pg_spotifyMe
-        image: postgres:13.2-alpine
+        image: ericdwkim/spotify-me-pg:v1
         restart: always
         environment:
             POSTGRES_USER: postgres
@@ -24,9 +13,26 @@ services:
             - "5432:5432"
         # volumes:
         #     -postgresdata:/var/lib/postgresql/data:ro
+        networks:
+            - app-network
+    app:
+        container_name: app_spotifyMe
+        image: ericdwkim/spotifyme-flask:v1
+        depends_on:
+          - db
+        build: .
+        restart: always
+        ports:
+            - "5000:5000"
+        environment:
+            FLASK_ENV: development
+        # volumes:
+        #     -hostPath:containerPath:ro
+        networks:
+            - app-network
     pgadmin:
         container_name: pgadmin_spotifyMe
-        image: dpage/pgadmin4:5.2
+        image: ericdwkim/spotify-me-pgadmin:v1
         restart: always
         environment:
             PGADMIN_DEFAULT_EMAIL: ericdwkim.io@gmail.com
@@ -39,7 +45,11 @@ services:
             - "5433:5433"
         depends_on:
             - db
+        networks:
+            - app-network
+volumes:
+    postgresdata:
 networks:
-    default:
-        name: nunet
+    app-network:
+        driver: bridge
 

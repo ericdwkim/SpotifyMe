@@ -4,7 +4,7 @@ from flask.templating import render_template
 from flask_migrate import Migrate
 from .models import db
 from .api import accounts, artists, albums, groups, songs
-from src.config import audios
+# from src.config import audios
 
 # https://flask.palletsprojects.com/en/2.0.x/patterns/appfactories/
 
@@ -12,7 +12,9 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        SQLALCHEMY_DATABASE_URI='postgresql://postgres@localhost:15432/spotify',
+        SQLALCHEMY_DATABASE_URI='postgresql://postgres@localhost:5432/spotify',
+        # SQLALCHEMY_DATABASE_URI='postgresql://postgres@172.17.0.2:5432/spotify',
+        # SQLALCHEMY_DATABASE_URI='postgresql://postgres@172.17.0.2:15432/spotify',
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
         SQLALCHEMY_ECHO=True
     )
@@ -43,11 +45,11 @@ def create_app(test_config=None):
 
 app = create_app()
 
-@app.route('/index')
+# @app.route('/index')
 # @app.route('/index/<name>')
-def index(name=None):
-    print(audios)
-    return render_template('index.html', name=name)
+# def index(name=None):
+#     print(audios)
+#     return render_template('index.html', name=name)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

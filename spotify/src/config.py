@@ -10,4 +10,4 @@ conn = psycopg2.connect(
 
 audios = pandas.read_sql('SELECT * FROM audios;', conn)
 # print(audios)
-print(conn)
+# print(conn)
