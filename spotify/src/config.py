@@ -2,6 +2,7 @@ import psycopg2
 import pandas
 
 conn = psycopg2.connect(
+    # host = '192.168.144.2', # db IPAddress
     host = 'localhost',
     database = 'spotify',
     user = 'postgres',

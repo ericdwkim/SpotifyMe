@@ -13,8 +13,7 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY='dev',
         SQLALCHEMY_DATABASE_URI='postgresql://postgres@localhost:5432/spotify',
-        # SQLALCHEMY_DATABASE_URI='postgresql://postgres@172.17.0.2:5432/spotify',
-        # SQLALCHEMY_DATABASE_URI='postgresql://postgres@172.17.0.2:15432/spotify',
+        # SQLALCHEMY_DATABASE_URI='postgresql://postgres@192.168.144.2:5432/spotify',
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
         SQLALCHEMY_ECHO=True
     )
