@@ -13,7 +13,6 @@ access_key = os.getenv('access_key')
 access_secret = os.getenv('access_secret')
 s3_bucket = os.getenv('bucket_name')
 
-
 def main():
 
     # Main driver function
