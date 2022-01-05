@@ -1,7 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 .env*
-flask/spotify/audio_tracks/*
+spotify/audio_tracks/*
 notes/*
 venv
 
@@ -10,3 +10,6 @@ venv
 
 # ec2 private key
 *.pem
+
+# TODO: ~/.aws/config req'd
+spotify/seed_audios*
