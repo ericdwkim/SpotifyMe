@@ -9,6 +9,6 @@ conn = psycopg2.connect(
     port = '5432'
 )
 
-audios = pandas.read_sql('SELECT * FROM audios;', conn)
+# audios = pandas.read_sql('SELECT * FROM audios;', conn)
 # print(audios)
 # print(conn)

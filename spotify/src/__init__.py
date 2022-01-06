@@ -44,11 +44,11 @@ def create_app(test_config=None):
 
 app = create_app()
 
-# @app.route('/index')
+@app.route('/index')
 # @app.route('/index/<name>')
-# def index(name=None):
-#     print(audios)
-#     return render_template('index.html', name=name)
+def index(name=None):
+    # print(audios)
+    return render_template('index.html', name=name)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

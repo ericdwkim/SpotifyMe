@@ -1,5 +1,5 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:slim
+FROM python:3.9-slim
 
 EXPOSE 5000
 
@@ -23,3 +23,4 @@ USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "spotify.src.__init__:app"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:5000", "spotify.wsgi:app"]
