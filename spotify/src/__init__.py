@@ -44,7 +44,8 @@ def create_app(test_config=None):
 
 app = create_app()
 
-@app.route('/index')
+@app.route('/')
+# @app.route('/index')
 # @app.route('/index/<name>')
 def index(name=None):
     # print(audios)
