@@ -20,7 +20,7 @@
 			],
 			"dockerRun": {
 				"env": {
-					"FLASK_APP": "spotify/src/__init__.py"
+					"FLASK_APP": "spotify/src/app.py"
 				}
 			},
 			"python": {

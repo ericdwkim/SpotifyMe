@@ -1,5 +1,5 @@
 import psycopg2
-import pandas
+# import pandas
 
 conn = psycopg2.connect(
     host = 'pg_spotifyMe',

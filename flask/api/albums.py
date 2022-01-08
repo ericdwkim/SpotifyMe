@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask import Blueprint, json, jsonify, abort, request
 from sqlalchemy.sql.sqltypes import Date
-from ..models import Album, db
+from models import Album, db
 
 bp_albums = Blueprint('albums', __name__, url_prefix='/albums')
 # print(bp_albums)

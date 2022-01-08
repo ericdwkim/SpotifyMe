@@ -1,5 +1,4 @@
-from ...flask.spotify.src.models import Song, Album, Group, Account, Artist
-
+from ...flask.models import Song, Album, Group, Account, Artist
 def test_new_song():
     """
     GIVEN a Song model

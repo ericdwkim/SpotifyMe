@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from flask.templating import render_template
 from flask_migrate import Migrate
-from .models import db
+from models import db
 from .api import accounts, artists, albums, groups, songs
 # from src.config import audios
 

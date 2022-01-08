@@ -1,5 +1,5 @@
 from flask import Blueprint, json, jsonify, abort, request
-from ..models import Artist, db
+from models import Artist, db
 
 bp_artists = Blueprint('artists', __name__, url_prefix='/artists')
 

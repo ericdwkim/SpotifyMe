@@ -1,4 +1,4 @@
-from ..flask.spotify.src import create_app
+from ..flask.app import create_app
 import pytest
 
 @pytest.fixture
