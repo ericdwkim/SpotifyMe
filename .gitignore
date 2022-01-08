@@ -13,3 +13,9 @@ venv
 
 # TODO: ~/.aws/config req'd
 spotify/seed_audios*
+
+# temp data
+pgadmin
+
+# wip
+docker-compose.copy.yml
