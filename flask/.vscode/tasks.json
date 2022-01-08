@@ -6,7 +6,7 @@
 			"label": "docker-build",
 			"platform": "python",
 			"dockerBuild": {
-				"tag": "spotifyme:latest",
+				"tag": "flask:latest",
 				"dockerfile": "${workspaceFolder}/Dockerfile",
 				"context": "${workspaceFolder}",
 				"pull": true
@@ -20,7 +20,7 @@
 			],
 			"dockerRun": {
 				"env": {
-					"FLASK_APP": "spotify/src/app.py"
+					"FLASK_APP": "app.py"
 				}
 			},
 			"python": {
