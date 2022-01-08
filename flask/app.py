@@ -3,7 +3,7 @@ from flask import Flask
 from flask.templating import render_template
 from flask_migrate import Migrate
 from models import db
-from .api import accounts, artists, albums, groups, songs
+from api import accounts, artists, albums, groups, songs
 # from src.config import audios
 
 # https://flask.palletsprojects.com/en/2.0.x/patterns/appfactories/
