@@ -1,8 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 .env*
-spotify/audio_tracks/*
-notes/*
+scripts/audio_tracks/*
 venv
 
 # Testing
@@ -12,10 +11,7 @@ venv
 *.pem
 
 # TODO: ~/.aws/config req'd
-spotify/seed_audios*
+scripts/seeders/prod*
 
-# temp data
-pgadmin
-
-# wip
-docker-compose.copy.yml
+# pgadmin 
+data/pgadmin*
