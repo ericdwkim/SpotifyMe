@@ -15,5 +15,3 @@ scripts/seeders/prod*
 
 # pgadmin 
 data/pgadmin*
-
-# ssh test
