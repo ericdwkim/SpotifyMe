@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Hello, Flask</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />   
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='flask/static/css/site.css')}}" />   
      </head>
     <body>
         {%if name %}
@@ -13,3 +13,4 @@
         {% endif %}
     </body>
 </html>
+<!-- TODO: fix filename pathing to css -->
