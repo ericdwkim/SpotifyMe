@@ -15,3 +15,5 @@ scripts/seeders/prod*
 
 # pgadmin 
 data/pgadmin*
+
+#test
