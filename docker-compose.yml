@@ -1,87 +1,42 @@
 version: "3.8"
 services:
-    # web:
-    #     build: flask
-    #     image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_web
-    #     command: gunicorn --bind 0.0.0.0:5000 flask.app:app
-    #     # volumes:
-    #         # - static_volume: /path/to/static
-    #         # - media_volume: /path/to/media
-    #     expose:
-    #         - 5000
-    #     # environment:
-    #     #     - ./.env.prod
-    # nginx:
-    #     build: nginx
-    #     image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_nginx
-    #     volumes:
-    #         - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    #     #     - static_volume: /path/to/static
-    #     #     - media_volume: /path/to/media
-    #     ports:
-    #         - 80:80
-    #     depends_on:
-    #         - web
-    #     # networks:
-    #     #     - app-network
-    app:
-        container_name: app_spotifyMe
-        image: ericdwkim/spotifyme-flask:v2
-        depends_on:
-          - db
-        build: .
-        restart: always
-        ports:
-            - "5000"
-        environment:
-            FLASK_ENV: development
+    web:
+        build: ./flask
+        image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_web
+        command: gunicorn --bind 0.0.0.0:5000 flask.app:app
         volumes:
-            - postgresdata:/var/lib/postgresql/data
-        networks:
-            - app-network
+            - ./flask/:/usr/src/flask/
+            - static_volume:/path/to/static
+            # - media_volume: /path/to/media
+        expose:
+            - 5000
+        environment:
+            - DB_HOST=spotifyme.cxnqmj16saex.us-east-2.rds.amazonaws.com
+            - DB_PORT=5432
+            - DB_NAME=spotify
+            - DB_USER=postgres
+            - DB_PASSWORD=admin123
+            - DATABASE=postgres
+            - VIRTUAL_HOST=ec2-3-135-127-249.us-east-2.compute.amazonaws.com
+            - VIRTUAL_PORT=5000
             
-    db:
-        container_name: pg_spotifyMe
-        image: ericdwkim/spotify-me-pg:v1
-        restart: always
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_DB: spotify
-            POSTGRES_HOST_AUTH_METHOD: trust
-            PGUSER: postgres
-        ports:
-            - "5432:5432"
+    nginx:
+        build: ./nginx
+        image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_nginx
         volumes:
-            - postgresdata:/var/lib/postgresql/data
-        networks:
-            - app-network
-    pgadmin:
-        container_name: pgadmin_spotifyMe
-        image: ericdwkim/spotify-me-pgadmin:v1
-        restart: always
-        environment:
-            PGADMIN_DEFAULT_EMAIL: ericdwkim.io@gmail.com
-            PGADMIN_DEFAULT_PASSWORD: ${pgadmin_password}
-            PGADMIN_LISTEN_PORT: 5433
-            PGADMIN_CONFIG_SERVER_MODE: "False"
-            PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
-            PGADMIN_CONFIG_UPGRADE_CHECK_ENABLED: "False"
+            - static_volume:/usr/src/flask/static
+        #     - media_volume: /path/to/media
         ports:
-            - "5433:5433"
-            # - "5050:80"
-        # expose:
-        #     - "80"
+            - 80:80
         depends_on:
-            - db
-        volumes:
-            - ./data/pgadmin:/var/lib/pgadmin
-        networks:
-            - app-network
-networks:
-    app-network:
-        driver: bridge
+            - web
+        # networks:
+        #     - app-network
+# networks:
+#     app-network:
+#         driver: bridge
 
 volumes:
     postgresdata:
-    static_data:
-    media_data:
+    static_volume:
+    # media_volume:
