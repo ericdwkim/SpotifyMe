@@ -10,11 +10,11 @@ venv
 # ec2 private key
 *.pem
 
-# TODO: ~/.aws/config req'd
-scripts/seeders/prod*
-
 # pgadmin 
 data/pgadmin*
 
 # migrations dir
 migrations*
+
+# notes-to-self
+TODOs
