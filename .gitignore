@@ -15,3 +15,6 @@ scripts/seeders/prod*
 
 # pgadmin 
 data/pgadmin*
+
+# migrations dir
+migrations*

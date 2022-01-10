@@ -1,29 +1,5 @@
 version: "3.8"
 services:
-    # web:
-    #     build: flask
-    #     image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_web
-    #     command: gunicorn --bind 0.0.0.0:5000 flask.app:app
-    #     # volumes:
-    #         # - static_volume: /path/to/static
-    #         # - media_volume: /path/to/media
-    #     expose:
-    #         - 5000
-    #     # environment:
-    #     #     - ./.env.prod
-    # nginx:
-    #     build: nginx
-    #     image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_nginx
-    #     volumes:
-    #         - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    #     #     - static_volume: /path/to/static
-    #     #     - media_volume: /path/to/media
-    #     ports:
-    #         - 80:80
-    #     depends_on:
-    #         - web
-    #     # networks:
-    #     #     - app-network
     app:
         container_name: app_spotifyMe
         image: ericdwkim/spotifyme-flask:v2
@@ -55,6 +31,7 @@ services:
             - postgresdata:/var/lib/postgresql/data
         networks:
             - app-network
+            
     pgadmin:
         container_name: pgadmin_spotifyMe
         image: ericdwkim/spotify-me-pgadmin:v1
@@ -83,5 +60,3 @@ networks:
 
 volumes:
     postgresdata:
-    static_data:
-    media_data:
