@@ -1,8 +1,60 @@
-# SpotifyMe
+# SpotifyMe Clone 
 
-Welcome to my Spotify Clone Project repository!
+Welcome to the SpotifyMe repository. This is a work-in-progress portfolio project of the popular music streaming app, Spotify!
 
-This repo is a work-in-progress cloning project of the popular music streaming app, Spotify.
+SpotifyMe is built using the [Flask](https://flask.palletsprojects.com/en/2.0.x/) API microframework with a Postgres database. 
 
-I have migrated all of the progress for this project to its own separate repo from the nested
-portfolio project [here](https://github.com/ericdwkim/nucamp-python/tree/main/Python/2-SQL/portfolio_project)
+
+## Create and activate the virtual environment
+
+`python -m venv venv`
+
+MacOS
+
+`. venv/bin/activate`
+
+Windows
+
+`. venv/Scripts/activate`
+
+## Check Python and pip versions 
+
+Ensure that `python` is version 3.9.4
+
+`python -V`
+
+`python -m pip install --upgrade pip==21.1.2`
+
+Ensure that `pip` is version 21.1.2
+
+`pip -V`
+
+
+## Install dependencies to virtual environment
+
+```
+    cd flask
+    python -m pip install -r requirements.txt
+```
+
+## Download container images
+
+Flask application image
+
+`docker pull ericdwkim/spotifyme-flask:v2`
+
+Postgres database image
+
+`docker pull ericdwkim/spotify-me-pg:v1`
+
+pgAdmin4 image 
+
+`docker push ericdwkim/spotify-me-pgadmin:v1`
+
+## Run containers
+
+`docker compose up -d`
+
+## Tear down containers
+
+`docker compose down --rmi all`

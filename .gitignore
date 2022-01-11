@@ -1,7 +1,8 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 .env*
-scripts/audio_tracks/*
+scripts/audio_tracks/upload/*
+scripts/audio_tracks/download/*
 venv
 
 # Testing
