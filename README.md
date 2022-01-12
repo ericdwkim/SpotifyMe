@@ -46,7 +46,6 @@ $ pip -V
 $ cd flask
 $ python -m pip install -r requirements.txt
 ```
-<br> </br>
 
 There are two ways to run the app:
 
