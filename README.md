@@ -73,6 +73,8 @@ This command will result in 3 separate instances of the spotifyme-flask (v2) app
 
 Visit `localhost:7777`/api 
 
+```
+```
 
 2. Running locally on virtual environment
 
