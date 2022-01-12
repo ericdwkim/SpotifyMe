@@ -73,9 +73,7 @@ This command will result in 3 separate instances of the spotifyme-flask (v2) app
 
 Visit `localhost:7777`/api 
 
-```
-```
-
+<br> </br>
 2. Running locally on virtual environment
 
 Toggle `SQLALCHEMY_DATABASE_URI` in `flask/app.py` to `localhost` 
