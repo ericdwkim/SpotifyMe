@@ -64,7 +64,7 @@ Postgres database image
 
 pgAdmin image (optional)
 
-`$ ocker pull ericdwkim/spotify-me-pgadmin:v1`
+`$ docker pull ericdwkim/spotify-me-pgadmin:v1`
 
 ## Run containers
 
