@@ -1,9 +1,11 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 .env*
-scripts/audio_tracks/upload/*
-scripts/audio_tracks/download/*
 venv
+
+# Audio files
+scripts/audio_tracks/upload/*
+download/*
 
 # Testing
 .pytest_cache
@@ -11,10 +13,8 @@ venv
 # ec2 private key
 *.pem
 
-# pgadmin 
 data/pgadmin*
 
-# migrations dir
 migrations*
 
 # notes-to-self

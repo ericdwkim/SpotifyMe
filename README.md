@@ -36,8 +36,9 @@ Ensure that `pip` is version 21.1.2
     cd flask
     python -m pip install -r requirements.txt
 ```
+If you have a working [Docker Environment](https://docs.docker.com/engine/) already, pull the following container images and run the containers.
 
-## Download container images
+## Container images
 
 Flask application image
 
