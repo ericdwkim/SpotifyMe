@@ -1,8 +1,11 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 .env*
-scripts/audio_tracks/*
 venv
+
+# Audio files
+scripts/audio_tracks/upload/*
+download/*
 
 # Testing
 .pytest_cache
@@ -10,11 +13,9 @@ venv
 # ec2 private key
 *.pem
 
-# TODO: ~/.aws/config req'd
-scripts/seeders/prod*
-
-# pgadmin 
 data/pgadmin*
 
-# migrations dir
 migrations*
+
+# notes-to-self
+TODOs

@@ -6,8 +6,8 @@ services:
         command: gunicorn --bind 0.0.0.0:5000 flask.app:app
         volumes:
             - ./flask/:/usr/src/flask/
-            - static_volume:/path/to/static
-            # - media_volume: /path/to/media
+            - static_volume:/usr/src/flask/static
+            # - media_volume: /usr/src/flask/media
         expose:
             - 5000
         environment:
@@ -25,7 +25,7 @@ services:
         image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_nginx
         volumes:
             - static_volume:/usr/src/flask/static
-        #     - media_volume: /path/to/media
+        #     - media_volume: /usr/src/flask/media
         ports:
             - 5000:80
         depends_on:
