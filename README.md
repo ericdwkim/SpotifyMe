@@ -36,7 +36,10 @@ Ensure that `pip` is version 21.1.2
     cd flask
     python -m pip install -r requirements.txt
 ```
-If you have a working [Docker Environment](https://docs.docker.com/engine/) already, pull the following container images and run the containers.
+
+There are two ways to run the app:
+
+1. If you have a working [Docker Environment](https://docs.docker.com/engine/) already, pull the following container images and run the containers.
 
 ## Container images
 
@@ -56,6 +59,42 @@ pgAdmin4 image
 
 `docker compose up -d`
 
+## Run multiple instances
+
+`docker compose up -d --build --scale app=3` 
+
+This command will result in 3 separate instances of the spotifyme-flask (v2) app. 
+
 ## Tear down containers
 
 `docker compose down --rmi all`
+
+## Webpage & Endpoints
+
+Visit `localhost:7777`/api 
+
+
+2. Running locally on virtual environment
+
+Toggle `SQLALCHEMY_DATABASE_URI` in `flask/app.py` to `localhost` 
+
+Toggle `host` in `flask/config.py` to `localhost` 
+
+```
+cd flask
+export FLASK_ENV=development
+flask run
+```
+
+## Run Migrations
+
+```
+flask db init
+flask db stamp head
+flask db migrate
+flask db upgrade
+```
+
+## Webpage & Endpoints
+
+Visit `localhost:5000`/api 
