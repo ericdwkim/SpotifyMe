@@ -1,6 +1,6 @@
 # SpotifyMe Clone 
 
-Welcome to the SpotifyMe repository. This is a work-in-progress portfolio project of the popular music streaming app, Spotify!
+Welcome to the SpotifyMe repository. This is a WIP portfolio project of the popular music streaming app, Spotify!
 
 SpotifyMe is built using the [Flask](https://flask.palletsprojects.com/en/2.0.x/) API microframework with a Postgres database. 
 
