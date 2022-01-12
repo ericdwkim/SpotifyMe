@@ -4,14 +4,17 @@ services:
         build: ./flask
         image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_web
         command: gunicorn --bind 0.0.0.0:5000 app:app
+        depends_on:
+            - db
         volumes:
             - ./flask/:/usr/src/flask/
-            - static_volume:/usr/src/flask/static
-            - media_volume:/usr/src/flask/media
-        # expose:
-        #     - 5000
-        ports:
-            - 7777:5000
+            # - static_volume:/usr/src/flask/static
+            # - media_volume:/usr/src/flask/media
+        expose:
+            - "5000"
+        restart: always
+        # ports:
+        #     - 5000:5000
         environment:
             - DB_HOST=spotifyme.cxnqmj16saex.us-east-2.rds.amazonaws.com
             - DB_PORT=5432
@@ -21,24 +24,42 @@ services:
             - DATABASE=postgres
             - VIRTUAL_HOST=ec2-3-135-127-249.us-east-2.compute.amazonaws.com
             - VIRTUAL_PORT=5000
-        networks:
-            - app-network
-
-    nginx:
-        build: ./nginx
-        image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_nginx
-        volumes:
-            - static_volume:/usr/src/flask/static
-            - media_volume:/usr/src/flask/media
+        # networks:
+        #     - app-network
+    db:
+        container_name: pg_spotifyMe
+        image: ericdwkim/spotify-me-pg:v1
+        restart: always
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_DB: spotify
+            POSTGRES_HOST_AUTH_METHOD: trust
+            PGUSER: postgres
         ports:
-            - 8080:80
+            - "5432"
+        volumes:
+            - postgresdata:/var/lib/postgresql/data
+        # networks:
+        #     - app-network
+    nginx:
+        build:
+            context: .
+            dockerfile: ./nginx/Dockerfile
+        image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_nginx
+        restart: always
+        # volumes:
+        #     - static_volume:/usr/src/flask/static
+        #     - media_volume:/usr/src/flask/media
+        ports:
+            - "5000:80"
         depends_on:
             - web
-        networks:
-            - app-network
-networks:
-    app-network:
-        driver: bridge
+#         networks:
+#             - app-network
+# networks:
+#     app-network:
+#         driver: bridge
+#         external: true
 
 volumes:
     postgresdata:
