@@ -36,6 +36,7 @@ Ensure that `pip` is version 21.1.2
     cd flask
     python -m pip install -r requirements.txt
 ```
+<br> </br>
 
 There are two ways to run the app:
 
