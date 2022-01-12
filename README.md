@@ -50,7 +50,7 @@ Postgres database image
 
 pgAdmin4 image 
 
-`docker push ericdwkim/spotify-me-pgadmin:v1`
+`docker pull ericdwkim/spotify-me-pgadmin:v1`
 
 ## Run containers
 
