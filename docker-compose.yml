@@ -3,13 +3,15 @@ services:
     web:
         build: ./flask
         image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_web
-        command: gunicorn --bind 0.0.0.0:5000 flask.app:app
+        command: gunicorn --bind 0.0.0.0:5000 app:app
         volumes:
             - ./flask/:/usr/src/flask/
             - static_volume:/usr/src/flask/static
-            # - media_volume: /usr/src/flask/media
-        expose:
-            - 5000
+            - media_volume:/usr/src/flask/media
+        # expose:
+        #     - 5000
+        ports:
+            - 7777:5000
         environment:
             - DB_HOST=spotifyme.cxnqmj16saex.us-east-2.rds.amazonaws.com
             - DB_PORT=5432
@@ -19,24 +21,26 @@ services:
             - DATABASE=postgres
             - VIRTUAL_HOST=ec2-3-135-127-249.us-east-2.compute.amazonaws.com
             - VIRTUAL_PORT=5000
-            
+        networks:
+            - app-network
+
     nginx:
         build: ./nginx
         image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_nginx
         volumes:
             - static_volume:/usr/src/flask/static
-        #     - media_volume: /usr/src/flask/media
+            - media_volume:/usr/src/flask/media
         ports:
-            - 5000:80
+            - 80:80
         depends_on:
             - web
-        # networks:
-        #     - app-network
-# networks:
-#     app-network:
-#         driver: bridge
+        networks:
+            - app-network
+networks:
+    app-network:
+        driver: bridge
 
 volumes:
     postgresdata:
     static_volume:
-    # media_volume:
+    media_volume:
