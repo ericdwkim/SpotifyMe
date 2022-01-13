@@ -2,7 +2,7 @@ version: "3.8"
 services:
     web:
         build: ./flask
-        container_name: flask_web
+        container_name: ec2_web
         image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_web
         command: gunicorn --bind 0.0.0.0:5000 app:app
         # depends_on:
@@ -46,7 +46,7 @@ services:
         build:
             context: .
             dockerfile: ./nginx/Dockerfile
-        container_name: nginx
+        container_name: ec2_nginx
         environment:
           - SERVER_NAME=3.135.127.249
         image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_nginx
