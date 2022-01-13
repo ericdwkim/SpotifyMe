@@ -55,7 +55,7 @@ services:
         #     - static_volume:/usr/src/flask/static
         #     - media_volume:/usr/src/flask/media
         ports:
-            - "80:80"
+            - "5000:80"
         depends_on:
             - web
 #         networks:

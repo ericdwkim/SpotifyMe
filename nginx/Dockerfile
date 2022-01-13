@@ -1,8 +1,8 @@
 FROM nginx:1.21-alpine
 
 # Set working directory
-WORKDIR /flask
+WORKDIR /f
 
 RUN rm /etc/nginx/conf.d/default.conf
 
-COPY nginx.conf /etc/nginx/conf.d
+COPY nginx/nginx.conf /etc/nginx/conf.d
