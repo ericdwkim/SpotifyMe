@@ -1,11 +1,17 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+*.DS_Store
+
+# Environments
 .env*
 venv
 
 # Audio files
 scripts/audio_tracks/upload/*
 download/*
+
+# Flask 
+instance/
 
 # Testing
 .pytest_cache

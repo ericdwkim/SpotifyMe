@@ -2,10 +2,11 @@ version: "3.8"
 services:
     web:
         build: ./flask
+        container_name: flask_web
         image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_web
         command: gunicorn --bind 0.0.0.0:5000 app:app
-        depends_on:
-            - db
+        # depends_on:
+        #     - db
         volumes:
             - ./flask/:/usr/src/flask/
             # - static_volume:/usr/src/flask/static
@@ -26,32 +27,35 @@ services:
             - VIRTUAL_PORT=5000
         # networks:
         #     - app-network
-    db:
-        container_name: pg_spotifyMe
-        image: ericdwkim/spotify-me-pg:v1
-        restart: always
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_DB: spotify
-            POSTGRES_HOST_AUTH_METHOD: trust
-            PGUSER: postgres
-        ports:
-            - "5432"
-        volumes:
-            - postgresdata:/var/lib/postgresql/data
+    # db:
+    #     container_name: pg_spotifyMe
+    #     image: ericdwkim/spotify-me-pg:v1
+    #     restart: always
+    #     environment:
+    #         POSTGRES_USER: postgres
+    #         POSTGRES_DB: spotify
+    #         POSTGRES_HOST_AUTH_METHOD: trust
+    #         PGUSER: postgres
+    #     ports:
+    #         - "5432"
+    #     volumes:
+    #         - postgresdata:/var/lib/postgresql/data
         # networks:
         #     - app-network
     nginx:
         build:
             context: .
             dockerfile: ./nginx/Dockerfile
+        container_name: nginx
+        environment:
+          - SERVER_NAME=3.135.127.249
         image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_nginx
         restart: always
         # volumes:
         #     - static_volume:/usr/src/flask/static
         #     - media_volume:/usr/src/flask/media
         ports:
-            - "5000:80"
+            - "80:80"
         depends_on:
             - web
 #         networks:
