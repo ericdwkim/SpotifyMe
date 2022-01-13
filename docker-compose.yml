@@ -47,8 +47,6 @@ services:
             context: .
             dockerfile: ./nginx/Dockerfile
         container_name: nginx
-        environment:
-          - SERVER_NAME=3.135.127.249
         image: 519507956377.dkr.ecr.us-east-2.amazonaws.com/spotifyme_flask_docker_aws:spotifyme_flask_docker_aws_nginx
         restart: always
         # volumes:
