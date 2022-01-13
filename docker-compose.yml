@@ -43,8 +43,7 @@ services:
         # networks:
         #     - app-network
     nginx:
-        build:
-            context: ./nginx/Dockerfile
+        build: ./nginx
         container_name: ec2_nginx
         environment:
           - SERVER_NAME=3.135.127.249
