@@ -27,16 +27,16 @@ $ . venv/Scripts/activate
 ```
 ## Check Python and pip versions 
 
-This project has only been tested with the following `python` and `pip` versions.
+This project has only been tested with the following `python3` and `pip` versions.
 
-Ensure that the installed `python` is version `3.9.4` on the venv
+Ensure that the installed `python3` is version `3.9.4` on the venv
 
-`$ python -V`
+`$ python3 -V`
 
 Ensure that the installed `pip` is version `21.1.2` on the venv
 
 ```
-$ python -m pip install --upgrade pip==21.1.2
+$ python3 -m pip install --upgrade pip==21.1.2
 $ pip -V
 ```
 
@@ -44,7 +44,7 @@ $ pip -V
 
 ```
 $ cd flask
-$ python -m pip install -r requirements.txt
+$ python3 -m pip install -r requirements.txt
 ```
 
 There are two ways to run the app:
