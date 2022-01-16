@@ -143,12 +143,6 @@ Toggle `SQLALCHEMY_DATABASE_URI` in `flask/app.py` to `localhost`
 
 Toggle `host` in `flask/config.py` to `localhost` 
 
-```
-$ cd flask
-$ export FLASK_ENV=development
-$ flask run
-```
-
 ## Run Migrations
 
 `$ flask db init` (if `migrations` directory does not yet exist)
