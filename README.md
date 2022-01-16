@@ -56,7 +56,7 @@ We use `altinstall` instead of `install` as the latter will overwrite default sy
 
 ## Confirm Python version
 
-Ensure that the installed `python3.9` is version `3.9.4` on the venv
+Ensure that the installed `python3.9` is version `3.9.4` at the system level
 
 `$ python3.9 -V`
 
