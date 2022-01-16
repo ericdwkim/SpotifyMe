@@ -100,23 +100,21 @@ $ cd flask
 $ python3.9 -m pip install -r requirements.txt
 ```
 
-There are two ways to run the app:
-
-1. If you have a working [Docker Environment](https://docs.docker.com/engine/) already, pull the following images and run the containers.
+Set up a [Docker Environment](https://docs.docker.com/engine/), pull the images, and run the containers.
 
 ## Container images
 
-Flask application image
+Flask web app image
 
-`$ docker pull ericdwkim/spotifyme-flask:v2`
+`$ docker pull ericdwkim/ec2-spotifyme-flask-web:v3`
 
-Postgres database image
+Postgres database (linux/amd64) image
 
-`$ docker pull ericdwkim/spotify-me-pg:v1`
+`$ docker pull ericdwkim/spotifyme-pg:v1`
 
-pgAdmin image (optional)
+Nginx reverse-proxy image
 
-`$ docker pull ericdwkim/spotify-me-pgadmin:v1`
+`$ docker pull ericdwkim/ec2-spotifyme-flask-nginx:v4`
 
 ## Run containers
 
@@ -134,25 +132,16 @@ This command will result in 3 separate instances of the spotifyme-flask (v2) app
 
 ## Webpage & Endpoints
 
-Visit `localhost:7777`/api 
-
-<br> </br>
-2. Running locally on virtual environment
-
-Toggle `SQLALCHEMY_DATABASE_URI` in `flask/app.py` to `localhost` 
-
-Toggle `host` in `flask/config.py` to `localhost` 
+Ping `ec2-3-135-127-249.us-east-2.compute.amazonaws.com:5000`/api 
 
 ## Run Migrations
 
-`$ flask db init` (if `migrations` directory does not yet exist)
 
 ```
+$ cd flask
+$ flask db init
 $ flask db stamp head
 $ flask db migrate
 $ flask db upgrade
 ```
 
-## Webpage & Endpoints
-
-Visit `localhost:5000`/api
