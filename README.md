@@ -57,11 +57,11 @@ Flask application image
 
 `$ docker pull ericdwkim/spotifyme-flask:v2`
 
-Postgres database image
+Postgres database (linux/arm64) image
 
 `$ docker pull ericdwkim/spotify-me-pg:v1`
 
-pgAdmin image (optional)
+pgAdmin image
 
 `$ docker pull ericdwkim/spotify-me-pgadmin:v1`
 
@@ -98,9 +98,9 @@ $ flask run
 
 ## Run Migrations
 
-`$ flask db init` (if `migrations` directory does not yet exist)
-
 ```
+$ cd flask
+$ flask db init
 $ flask db stamp head
 $ flask db migrate
 $ flask db upgrade
