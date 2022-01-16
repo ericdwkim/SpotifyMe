@@ -3,8 +3,8 @@ import psycopg2
 
 conn = psycopg2.connect(
    #  host = 'pg_spotifyMe',
-   #  host = 'localhost',
-    host = 'ec2-3-135-127-249.us-east-2.compute.amazonaws.com',
+    host = 'localhost',
+   #  host = 'ec2-3-135-127-249.us-east-2.compute.amazonaws.com',
     database = 'spotify',
     user = 'postgres',
     port = '5432'
