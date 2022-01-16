@@ -118,17 +118,17 @@ Nginx reverse-proxy image
 
 ## Run containers
 
-`$ docker compose up -d`
-
-## Run multiple instances
-
-`$ docker compose up -d --build --scale app=3` 
-
-This command will result in 3 separate instances of the spotifyme-flask (v2) app. 
+```
+$ docker compose up -d
+$ docker ps 
+```
+This command will run the `ec2_web`, `ec2_nginx` , `ec2_pg` containers. 
 
 ## Tear down containers
 
 `$ docker compose down --rmi all`
+
+This command will stop and remove the `ec2_web`, `ec2_nginx` , `ec2_pg` containers. 
 
 ## Webpage & Endpoints
 
