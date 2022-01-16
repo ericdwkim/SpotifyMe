@@ -39,6 +39,8 @@ Navigate to source directory and execute the `configure` script
 ```
 $ cd Python-3.9.4
 $ ./configure --enable-optimizations
+$ make
+$ sudo make install
 ```
 The `--enable-optimizations` option optimizes the Python binary by running multiple tests. This makes the build process slower. The script runs a number of checks to ensure that all of the dependencies on your system are present.
 
@@ -68,14 +70,22 @@ Debian/Ubuntu systems:
 $ sudo apt install python3.9-venv python3.9-dev
 $ python3.9 -m venv --without-pip venv
 $ . venv/bin/activate
-$ curl https://bootstrap.pypa.io/get-pip.py | python
-reactivate venv
-check pip
-pip instaall --upgrade pip=21.1.2
 ```
 The virtual environment is created with the `--without-pip` option as a workaround to pyenv returning a non-zero exit status 1 error and without having to resort to `setuptool` shenanigans.
 
-# Install and upgrade pip  
+## Install pip to venv
+```
+$ curl https://bootstrap.pypa.io/get-pip.py | python
+$ deactivate
+$ rm -rf venv
+$ python3.9 -m venv venv
+$ . venv/bin/activate
+$ ls venv/bin
+$ which pip
+```
+Pip is installed with `curl` to the virtual environment. A new `venv` is created to reflect the correct `pip` installation which can be confirmed in `venv/bin` directory. 
+
+# Upgrade pip  
 
 Ensure that the installed `pip` is version `21.1.2` on the venv
 ```
@@ -89,7 +99,6 @@ $ pip -V
 $ cd flask
 $ python3.9 -m pip install -r requirements.txt
 ```
-TODO:
 
 There are two ways to run the app:
 
