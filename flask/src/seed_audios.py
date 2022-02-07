@@ -4,10 +4,7 @@ import os
 import boto3
 from dotenv import load_dotenv
 import urllib
-# from flask import Audio
-# from src.models import Audio
 from models import Audio
-# from ...flask.src.models import Audio
 from app import create_app
 
 # Load environmental variables
