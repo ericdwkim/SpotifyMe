@@ -4,7 +4,7 @@ __pycache__/
 venv
 
 # Audio files
-flask/audio_tracks/*
+flask/src/audio_tracks/*
 download/*
 
 # Testing
