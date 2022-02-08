@@ -24,6 +24,7 @@ def main():
     )
 
     # Upload Files to S3
+    # TODO: prior to uploading object, set object's ACL to public-read 
     data_file_path = os.path.join(os.getcwd(), 'audio_tracks/upload')
     for file in os.listdir(data_file_path):
         if not file.startswith('~'):
@@ -34,6 +35,7 @@ def main():
                     bucket_name,
                     file
                 )
+
             except ClientError as e:
                 # print(f'Credential is incorrect' + e)
                 logging.error(e)
@@ -41,7 +43,7 @@ def main():
             return True
 
     # Downloading Files from S3
-    # TODO: programmatically fetch all keys from each s3 object to download in mass
+    # FEATURE_TODO: programmatically fetch all keys from each s3 object to download in mass
 
     # s3.download_file(bucket_name, 'someTrack1.mp3',
     #                  os.path.join('./audio_tracks/download', 'test.mp3'))

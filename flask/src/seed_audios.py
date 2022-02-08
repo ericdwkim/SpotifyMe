@@ -42,16 +42,5 @@ def main():
         store_urls(list_url_obj)
 
 
-    # TODO: object url requires configuring permissions for each individual s3 object;
-    # programmatically access each s3 object; see SAMPLE ACL:
-"""
-    https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#sample-acl
-    https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html
-    https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-arn-format.html
-    https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html
-
-"""
-
-
 if __name__ == '__main__':
     main()
