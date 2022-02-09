@@ -23,7 +23,7 @@ def main():
         aws_secret_access_key=access_secret
     )
 
-    # Upload Files to S3
+    # Upload Files to S3 and grants READ only permissions to objects
     data_file_path = os.path.join(os.getcwd(), 'audio_tracks/upload')
     for file in os.listdir(data_file_path):
         if not file.startswith('~'):
