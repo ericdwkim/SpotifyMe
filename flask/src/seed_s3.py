@@ -55,3 +55,20 @@ FEATURE_TODO: programmatically fetch all keys from each s3 object to download in
 
 if __name__ == '__main__':
     main()
+
+
+"""
+
+TODO: implement as new try block; lists all current s3 objects and last date modified
+            need resource or client obj sufficient? 
+
+s3_rsrc = boto3.resource('s3')
+bucket =  s3.Bucket(bucket_name)
+
+for track in bucket.objects.all():
+    print(obj.key, obj.last_modified) 
+
+    @dev: where obj.key = track title 
+    @dev: search up other obj.<apis> for funsies too
+
+"""
