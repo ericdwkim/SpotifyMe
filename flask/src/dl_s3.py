@@ -23,6 +23,7 @@ def main():
         aws_secret_access_key=access_secret
     )
 
+    # Connect to S3 Resource
     s3_rsrc = boto3.resource(
         's3',
         aws_access_key_id=access_key,
@@ -30,34 +31,20 @@ def main():
     )
 
 
-    # Download Files from S3 en mass
-
-    dl_file_path = os.path.join('./audio_tracks/download')
+    # Download all track files from S3 
     bucket =  s3_rsrc.Bucket(bucket_name)
-
     for track in bucket.objects.all():
         try:
             print('Downloading file {0}...'.format(track.key))
             s3_client.download_file(
                 bucket_name, 
                 track.key,
-                # dl_file_path)
                 os.path.join('./audio_tracks/download', track.key))
         
         except ClientError as e:
             logging.error(e)
             return False
     return True
-
-"""    
-@dev: Downloads Files from S3
-FEATURE_TODO: programmatically fetch all keys from each s3 object to download in mass
-"""
-    # s3.download_file(bucket_name, 'someTrack1.mp3',
-    #                  os.path.join('./audio_tracks/download', 'test.mp3'))
-    # s3.download_file(bucket_name, 'someTrack2.mp3',
-    #                  os.path.join('./audio_tracks/download', 'test2.mp3'))
-
 
 if __name__ == '__main__':
     main()
