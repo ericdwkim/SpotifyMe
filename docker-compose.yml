@@ -23,12 +23,16 @@ services:
         environment:
             POSTGRES_USER: postgres
             POSTGRES_DB: spotify
-            POSTGRES_HOST_AUTH_METHOD: trust
-            PGUSER: postgres
+            POSTGRES_PASSWORD: admin123
+            PGDATA: /var/lib/postgresql/data            
         ports:
             - "5432:5432"
         volumes:
-            - postgresdata:/var/lib/postgresql/data
+            # - postgresdata:/var/lib/postgresql/data
+            -
+                type: bind
+                source: /tmp/postgres-data
+                target: /var/lib/postgresql/data
         networks:
             - app-network
             
@@ -45,9 +49,6 @@ services:
             PGADMIN_CONFIG_UPGRADE_CHECK_ENABLED: "False"
         ports:
             - "5433:5433"
-            # - "5050:80"
-        # expose:
-        #     - "80"
         depends_on:
             - db
         volumes:
