@@ -28,7 +28,7 @@ def main():
     for file in os.listdir(data_file_path):
         if not file.startswith('~'):
             try:
-                print('Uploading file {0}...'.format(file))
+                print('Uploading file:  {0}...'.format(file))
                 s3.upload_file(
                     os.path.join(data_file_path, file),
                     bucket_name,
@@ -40,7 +40,7 @@ def main():
             except ClientError as e:
                 logging.error(e)
                 return False
-            return True
+    return True
 
 
 if __name__ == '__main__':
