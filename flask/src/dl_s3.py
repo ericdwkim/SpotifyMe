@@ -37,7 +37,7 @@ def main():
 
     for track in bucket.objects.all():
         try:
-            print('Downloading file {0}...'.format(track))
+            print('Downloading file {0}...'.format(track.key))
             s3_client.download_file(
                 bucket_name, 
                 track.key,
