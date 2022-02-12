@@ -47,7 +47,7 @@ def main():
         except ClientError as e:
             logging.error(e)
             return False
-        return True
+    return True
 
 """    
 @dev: Downloads Files from S3
