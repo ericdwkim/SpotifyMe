@@ -1,5 +1,5 @@
 from flask import Blueprint, json, jsonify, abort, request
-from models import Group, db
+from ..models import Group, db
 
 bp_groups = Blueprint('groups', __name__, url_prefix='/groups')
 
