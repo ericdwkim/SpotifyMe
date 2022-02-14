@@ -4,8 +4,12 @@ import os
 import boto3
 from dotenv import load_dotenv
 import urllib
-from models import Audio
-from app import create_app
+# from models import Audio
+from .flask.src.models import Audio
+# from app import create_app
+# from ..src import create_app
+# from src.__init__ import create_app
+from .flask.src import create_app
 
 # Load environmental variables
 load_dotenv()
