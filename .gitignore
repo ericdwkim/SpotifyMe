@@ -4,8 +4,7 @@ __pycache__/
 venv
 
 # Audio files
-flask/src/audio_tracks/*
-download/*
+scripts/audio_tracks/*
 
 # Testing
 .pytest_cache
