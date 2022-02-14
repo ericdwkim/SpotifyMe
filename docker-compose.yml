@@ -8,9 +8,10 @@ services:
         build: .
         restart: always
         ports:
-            - "7777:5000"
+            - "5000"
         environment:
             FLASK_ENV: development
+            FLASK_APP: __init__.py
         volumes:
             - postgresdata:/var/lib/postgresql/data
         networks:
@@ -28,11 +29,11 @@ services:
         ports:
             - "5432:5432"
         volumes:
-            # - postgresdata:/var/lib/postgresql/data
-            -
-                type: bind
-                source: /tmp/postgres-data
-                target: /var/lib/postgresql/data
+            - postgresdata:/var/lib/postgresql/data
+            # -
+            #     type: bind
+            #     source: /tmp/postgres-data
+            #     target: /var/lib/postgresql/data
         networks:
             - app-network
             
