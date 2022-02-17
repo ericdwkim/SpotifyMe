@@ -5,6 +5,7 @@ services:
         image: ericdwkim/spotifyme-flask-vol:v5
         depends_on:
           - db
+        command: ["./wait-for-postgres.sh", "db", "__", "python", "app.py"]
         build: .
         restart: always
         ports:
@@ -13,10 +14,9 @@ services:
             FLASK_ENV: development
             FLASK_APP: __init__.py
         volumes:
-            # - test-data:/app
             -
                 type: volume
-                source: data-2
+                source: pgdata
                 target: /app
         networks:
             - c_backend
@@ -37,7 +37,7 @@ services:
             # - data-2:/var/lib/postgresql/data
             -
                 type: volume
-                source: data-2
+                source: pgdata
                 target: /var/lib/postgresql/data
         networks:
             - c_backend
@@ -68,10 +68,9 @@ services:
         # networks:
         #     - c_backend
 networks:
-    backend:
-        name: c_backend
-        driver: bridge
+    c_backend:
         external: true
+        name: c_backend
 
 volumes:
-    data-2:
+    pgdata:
