@@ -2,8 +2,9 @@ import psycopg2
 # import pandas
 
 conn = psycopg2.connect(
-    host = 'pg_spotifyMe',
-    # host = 'localhost',
+    # host = 'pg_spotifyMe',
+    host = 'localhost',
+    # host = '127.0.0.1',
     database = 'spotify',
     user = 'postgres',
     port = '5432'

@@ -2,7 +2,7 @@ version: "3.8"
 services:
     app:
         container_name: app_spotifyMe
-        image: ericdwkim/spotifyme-flask:v2
+        image: ericdwkim/spotifyme-flask-vol:v5
         depends_on:
           - db
         build: .
@@ -13,13 +13,14 @@ services:
             FLASK_ENV: development
             FLASK_APP: __init__.py
         volumes:
-            - postgresdata:/var/lib/postgresql/data
-            # -
-            #     type: volume
-            #     source: postgresdata
-            #     target: /var/lib/postgresql/data
+            # - test-data:/app
+            -
+                type: volume
+                source: data-2
+                target: /app
         networks:
-            - app-network
+            - c_backend
+        
             
     db:
         container_name: pg_spotifyMe
@@ -29,46 +30,48 @@ services:
             POSTGRES_USER: postgres
             POSTGRES_DB: spotify
             POSTGRES_PASSWORD: admin123
-            PGDATA: /var/lib/postgresql/data            
+            PGDATA: /var/lib/postgresql/data/pgdata          
         ports:
             - "5432:5432"
         volumes:
-            - postgresdata:/var/lib/postgresql/data
-            # -
-            #     type: volume
-            #     source:postgresdata
-            #     target: /var/lib/postgresql/data
+            # - data-2:/var/lib/postgresql/data
+            -
+                type: volume
+                source: data-2
+                target: /var/lib/postgresql/data
         networks:
-            - app-network
+            - c_backend
             
-    pgadmin:
-        container_name: pgadmin_spotifyMe
-        image: ericdwkim/spotify-me-pgadmin:v1
-        restart: always
-        environment:
-            PGADMIN_DEFAULT_EMAIL: ericdwkim.io@gmail.com
-            PGADMIN_DEFAULT_PASSWORD: admin123
-            PGADMIN_LISTEN_PORT: 5433
-            PGADMIN_CONFIG_SERVER_MODE: "False"
-            PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
-            PGADMIN_CONFIG_UPGRADE_CHECK_ENABLED: "False"
-        ports:
-            - "5433:5433"
-        depends_on:
-            - db
-        volumes:
+    # pgadmin:
+    #     container_name: pgadmin_spotifyMe
+    #     image: ericdwkim/spotify-me-pgadmin:v1
+    #     restart: always
+    #     environment:
+    #         PGADMIN_DEFAULT_EMAIL: ericdwkim.io@gmail.com
+    #         PGADMIN_DEFAULT_PASSWORD: admin123
+    #         PGADMIN_LISTEN_PORT: 5433
+    #         PGADMIN_CONFIG_SERVER_MODE: "False"
+    #         PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    #         PGADMIN_CONFIG_UPGRADE_CHECK_ENABLED: "False"
+    #     ports:
+    #         - "5433:5433"
+    #     depends_on:
+    #         - db
+    #     volumes:
             # - ./data/pgadmin:/var/lib/pgadmin
-            - postgresdata:/var/lib/pgadmin
+            # - postgresdata:/var/lib/pgadmin
             # -
                 # type: volume
                 # source: postgresdata
                 # target: /var/lib/pgadmin
                 # read_only: true 
-        networks:
-            - app-network
+        # networks:
+        #     - c_backend
 networks:
-    app-network:
+    backend:
+        name: c_backend
         driver: bridge
+        external: true
 
 volumes:
-    postgresdata:
+    data-2:
